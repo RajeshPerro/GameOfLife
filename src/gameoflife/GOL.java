@@ -20,7 +20,7 @@ public class GOL extends javax.swing.JFrame {
     /**
      * Creates new form GOL
      */
-    final int heig = 100, weid = 200;
+    final int heig = 100, weid = 200; //fixing the width and height for the panel
     boolean [][] currentMove  = new boolean[heig][weid], nextMove = new boolean [heig][weid];
     boolean play;
     Image offScreenImg;
@@ -33,7 +33,7 @@ public class GOL extends javax.swing.JFrame {
         offScreenGraph = offScreenImg.getGraphics();
         Timer time = new Timer();
         TimerTask task = new TimerTask(){
-            public void run(){
+            public void run(){              //ovverwrite buit in run() method for our play button and our own tasks.
                 if(play){
                     for(int i=1; i<heig ; i++)
                     {
@@ -53,7 +53,7 @@ public class GOL extends javax.swing.JFrame {
                 }  
             }
         };
-        time.scheduleAtFixedRate(task, 0, 100);
+        time.scheduleAtFixedRate(task, 0, 200); //this is for motion speed if you increase the value from 200 to like : 500 you will see the slower move.
         paint_screen();
     }
 
@@ -144,7 +144,7 @@ public class GOL extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void paint_screen()
+    private void paint_screen()     //This method is responsible to draw rectange and glider into the Panel
     {
        offScreenGraph.setColor(jPanel1.getBackground());
        offScreenGraph.fillRect(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -166,12 +166,12 @@ public class GOL extends javax.swing.JFrame {
        offScreenGraph.setColor(Color.BLACK);
        for(int i = 1; i< heig; i++)
        {
-           int y = i * jPanel1.getHeight()/heig;
+           int y = i * jPanel1.getHeight()/heig;                //Drawing vertical lines for rectangle
            offScreenGraph.drawLine(0, y, jPanel1.getWidth(), y);
        }
        for(int j = 1; j<weid ; j++)
        {
-          int x = j * jPanel1.getWidth()/weid;
+          int x = j * jPanel1.getWidth()/weid;              //Drawing horizental lines for rectangle
           offScreenGraph.drawLine(x, 0, x, jPanel1.getHeight()); 
        }
        
